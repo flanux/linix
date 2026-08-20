@@ -5,7 +5,8 @@ CPPFLAGS = -Iinclude
 
 SRC = \
       src/main.c \
-      src/commands/pwd.c
+      src/commands/pwd.c \
+      src/commands/cat.c
 
 OBJ = $(SRC:.c=.o)
 

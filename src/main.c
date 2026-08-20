@@ -3,6 +3,17 @@
 
 #include <linix/command.h>
 
+static LinixCommand commands[] = {
+	{
+		.name = "pwd",
+		.fn = linix_cmd_pwd
+	},
+	{
+		.name = "cat",
+		.fn = linix_cmd_cat
+	}
+};
+
 int main(int argc, char **argv)
 {
 	if (argc < 2) {
@@ -11,12 +22,24 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	if (strcmp(argv[1], "pwd") == 0)
-		return linix_cmd_pwd(argc-1, argv+1);
+	size_t command_count = 
+		sizeof(commands) / sizeof(commands[0]);
+
+	for (size_t i=0; i<command_count; i++) {
+		if (strcmp(argv[1], commands[i].name) == 0) {
+			return commands[i].fn(
+				argc-1,
+				argv+1
+			);
+		}
+	}
 
 	if (strcmp(argv[1], "help") == 0) {
 		printf("linix commands:\n");
-		printf(" pwd\n");
+
+		for (size_t i=0; i<command_count; i++)
+			printf(" %s\n", commands[i].name);
+
 		return 0;
 	}
 
