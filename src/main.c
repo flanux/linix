@@ -31,6 +31,10 @@ static LinixCommand commands[] = {
 	{
 		.name = "ls",
 		.fn = linix_cmd_ls
+	},
+	{
+		.name = "cp",
+		.fn = linix_cmd_cp
 	}
 };
 

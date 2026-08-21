@@ -15,5 +15,6 @@ int linix_cmd_touch(int argc, char **argv);
 int linix_cmd_mkdir(int argc, char **argv);
 int linix_cmd_rm(int argc, char **argv);
 int linix_cmd_ls(int argc, char **argv);
+int linix_cmd_cp(int argc, char **argv);
 
 #endif

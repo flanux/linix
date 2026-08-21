@@ -12,6 +12,7 @@ SRC = \
       src/commands/mkdir.c \
       src/commands/rm.c \
       src/commands/ls.c \
+      src/commands/cp.c \
       src/lib/io.c 
 
 OBJ = $(SRC:.c=.o)
