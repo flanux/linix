@@ -7,7 +7,7 @@
 int linix_cmd_touch(int argc, char **argv)
 {
 	if (argc < 2) {
-		fpritnf(stderr, "linix touch: missing file opearand");
+		fprintf(stderr, "linix touch: missing file opearand");
 		return 1;
 	}
 
