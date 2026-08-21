@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #include <linix/command.h>
+#include <linix/io.h>
 
 int linix_cmd_cat(int argc, char **argv)
 {
@@ -23,9 +24,13 @@ int linix_cmd_cat(int argc, char **argv)
 	ssize_t n;
 
 	while ((n=read(fd, buffer, sizeof(buffer))) > 0) {
-		ssize_t written = write(STDOUT_FILENO, buffer, n);
 
-		if (written == -1) {
+		if (linix_write_all(
+			STDOUT_FILENO,
+			buffer,
+			n
+		) == -1 ) {
+
 			perror("linix cat");
 			close(fd);
 			return 1;
