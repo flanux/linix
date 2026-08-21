@@ -23,6 +23,10 @@ static LinixCommand commands[] = {
 	{
 		.name = "mkdir",
 		.fn = linix_cmd_mkdir
+	},
+	{
+		.name = "rm",
+		.fn = linix_cmd_rm
 	}
 };
 
