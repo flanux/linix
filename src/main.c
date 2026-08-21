@@ -19,6 +19,10 @@ static LinixCommand commands[] = {
 	{
 		.name = "touch",
 		.fn = linix_cmd_touch
+	},
+	{
+		.name = "mkdir",
+		.fn = linix_cmd_mkdir
 	}
 };
 

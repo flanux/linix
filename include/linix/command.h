@@ -1,4 +1,3 @@
-
 #ifndef LINIX_COMMAND_H
 #define LINIX_COMMAND_H
 
@@ -13,5 +12,6 @@ int linix_cmd_pwd(int argc, char **argv);
 int linix_cmd_cat(int argc, char **argv);
 int linix_cmd_echo(int argc, char **argv);
 int linix_cmd_touch(int argc, char **argv);
+int linix_cmd_mkdir(int argc, char **argv);
 
 #endif

@@ -9,6 +9,7 @@ SRC = \
       src/commands/cat.c \
       src/commands/echo.c \
       src/commands/touch.c \
+      src/commands/mkdir.c \
       src/lib/io.c 
 
 OBJ = $(SRC:.c=.o)
