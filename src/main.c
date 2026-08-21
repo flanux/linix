@@ -11,6 +11,14 @@ static LinixCommand commands[] = {
 	{
 		.name = "cat",
 		.fn = linix_cmd_cat
+	},
+	{
+		.name = "echo",
+		.fn = linix_cmd_echo
+	},
+	{
+		.name = "touch",
+		.fn = linix_cmd_touch
 	}
 };
 
