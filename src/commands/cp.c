@@ -56,6 +56,8 @@ int linix_cmd_cp(int argc, char **argv)
 
 		close(source_fd);
 		close(destination_fd);
+
+		return 1;
 	}
 
 	close(source_fd);
