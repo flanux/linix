@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include <linix/command.h>
 #include <linix/io.h>
@@ -23,14 +24,20 @@ int linix_cmd_cat(int argc, char **argv)
 
 	ssize_t n;
 
-	while ((n=read(fd, buffer, sizeof(buffer))) > 0) {
+	for (;;) {
+		n = read(fd, buffer, sizeof(buffer));
+
+		if (n == -1 && errno == EINTR)
+			continue;
+
+		if (n <= 0)
+			break;
 
 		if (linix_write_all(
 			STDOUT_FILENO,
 			buffer,
 			n
-		) == -1 ) {
-
+		) == -1) {
 			perror("linix cat");
 			close(fd);
 			return 1;
