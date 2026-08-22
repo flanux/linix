@@ -68,8 +68,16 @@ int linix_cmd_cp(int argc, char **argv)
 		return 1;
 	}
 
-	close(source_fd);
-	close(destination_fd);
+	if (close(source_fd) == -1) {
+		perror("linix cp");
+		close(destination_fd);
+		return 1;
+	}
+
+	if (close(destination_fd) == -1) {
+		perror("linix cp");
+		return 1;
+	}
 
 	return 0;
 }
