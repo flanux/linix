@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include <linix/command.h>
 #include <linix/io.h>
@@ -35,7 +36,14 @@ int linix_cmd_cp(int argc, char **argv)
 	char buffer[4096];
 	ssize_t n;
 
-	while ((n = read(source_fd, buffer, sizeof(buffer))) > 0) {
+	for (;;) {
+		n = read(source_fd, buffer, sizeof(buffer));
+
+		if (n == -1 && errno == EINTR)
+			continue;
+
+		if (n <= 0)
+			break;
 
 		if (linix_write_all(
 			destination_fd,
