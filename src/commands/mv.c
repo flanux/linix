@@ -18,3 +18,5 @@ int linix_cmd_mv(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("mv", linix_cmd_mv)

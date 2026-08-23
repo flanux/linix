@@ -82,3 +82,5 @@ int linix_cmd_cp(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("cp", linix_cmd_cp)

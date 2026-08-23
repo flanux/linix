@@ -20,3 +20,5 @@ int linix_cmd_rm(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("rm", linix_cmd_rm)

@@ -35,3 +35,5 @@ int linix_cmd_touch(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("touch", linix_cmd_touch)

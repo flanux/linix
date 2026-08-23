@@ -16,3 +16,5 @@ int linix_cmd_echo(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("echo", linix_cmd_echo)

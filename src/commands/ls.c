@@ -27,3 +27,5 @@ int linix_cmd_ls(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("ls", linix_cmd_ls)

@@ -3,18 +3,12 @@
 #include <linix/command.h>
 #include <linix/registry.h>
 
-#define LINIX_COMMAND(cmd_name, cmd_fn) \
-	{.name = #cmd_name, .fn = cmd_fn },
-
-static const LinixCommand commands[] = {
-#include <linix/commands.def>
-};
-
-#undef LINIX_COMMAND
+extern const LinixCommand __start_linix_commands[];
+extern const LinixCommand __stop_linix_commands[];
 
 const LinixCommand *linix_commands(size_t *count)
 {
-	*count  = sizeof(commands) / sizeof(commands[0]);
+	*count = __stop_linix_commands - __start_linix_commands;
 
-	return commands;
+	return __start_linix_commands;
 }

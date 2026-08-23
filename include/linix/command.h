@@ -8,11 +8,10 @@ typedef struct {
 	LinixCommandFn fn;
 } LinixCommand;
 
-#define LINIX_COMMAND(name, fn) \
-	int fn(int argc, char **argv);
-
-#include "linix/commands.def"
-
-#undef LINIX_COMMAND
-
+#define LINIX_REGISTER_COMMAND(cmd_name, cmd_fn) \
+	static const LinixCommand linix_command_##cmd_fn \
+	__attribute__((section("linix_commands"), used)) = { \
+		.name = cmd_name, \
+		.fn = cmd_fn \
+	};
 #endif

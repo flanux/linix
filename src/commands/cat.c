@@ -55,3 +55,5 @@ int linix_cmd_cat(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("cat", linix_cmd_cat)

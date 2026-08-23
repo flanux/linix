@@ -20,3 +20,5 @@ int linix_cmd_mkdir(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("mkdir", linix_cmd_mkdir)

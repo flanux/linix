@@ -23,3 +23,5 @@ int linix_cmd_pwd(int argc, char **argv)
 
 	return 0;
 }
+
+LINIX_REGISTER_COMMAND("pwd", linix_cmd_pwd)
