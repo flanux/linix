@@ -2,6 +2,7 @@
 #include <dirent.h>
 
 #include <linix/command.h>
+#include <linix/error.h>
 
 int linix_cmd_ls(int argc, char **argv)
 {
@@ -13,7 +14,7 @@ int linix_cmd_ls(int argc, char **argv)
 	DIR *dir = opendir(path);
 
 	if (dir == NULL) {
-		perror("linix ls");
+		linix_perror("ls");
 		return 1;
 	}
 

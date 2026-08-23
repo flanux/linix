@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 
 #include <linix/command.h>
+#include <linix/error.h>
 
 int linix_cmd_touch(int argc, char **argv)
 {
@@ -21,14 +22,14 @@ int linix_cmd_touch(int argc, char **argv)
 	);
 
 	if (fd == -1) {
-		perror("linix touch");
+		linix_perror("touch");
 		return 1;
 	}
 
 	close(fd);
 
 	if (utimensat(AT_FDCWD, argv[1], NULL, 0) == -1) {
-		perror("linix touch");
+		linix_perror("touch");
 		return 1;
 	}
 

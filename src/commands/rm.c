@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include <linix/command.h>
+#include <linix/error.h>
 
 int linix_cmd_rm(int argc, char **argv)
 {
@@ -12,7 +13,7 @@ int linix_cmd_rm(int argc, char **argv)
 	
 	for (int i=1; i<argc; i++) {
 		if (unlink(argv[i]) == -1) {
-			perror("linix rm");
+			linix_perror("rm");
 			return 1;
 		}
 	}

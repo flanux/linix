@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include <linix/command.h>
+#include <linix/error.h>
 
 int linix_cmd_echo(int argc, char **argv)
 {

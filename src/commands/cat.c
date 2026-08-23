@@ -5,6 +5,7 @@
 
 #include <linix/command.h>
 #include <linix/io.h>
+#include <linix/error.h>
 
 int linix_cmd_cat(int argc, char **argv)
 {
@@ -16,7 +17,7 @@ int linix_cmd_cat(int argc, char **argv)
 	int fd = open(argv[1], O_RDONLY);
 
 	if (fd == -1) {
-		perror("linix cat");
+		linix_perror("cat");
 		return 1;
 	}
 
@@ -38,14 +39,14 @@ int linix_cmd_cat(int argc, char **argv)
 			buffer,
 			n
 		) == -1) {
-			perror("linix cat");
+			linix_perror("cat");
 			close(fd);
 			return 1;
 		}
 	}
 
 	if (n == -1) {
-		perror("linix cat");
+		linix_perror("cat");
 		close(fd);
 		return 1;
 	}

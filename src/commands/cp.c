@@ -5,6 +5,7 @@
 
 #include <linix/command.h>
 #include <linix/io.h>
+#include <linix/error.h>
 
 int linix_cmd_cp(int argc, char **argv)
 {
@@ -17,7 +18,7 @@ int linix_cmd_cp(int argc, char **argv)
 	int source_fd = open(argv[1], O_RDONLY);
 
 	if (source_fd == -1) {
-		perror("linix cp");
+		linix_perror("cp");
 		return 1;
 	}
 
@@ -28,7 +29,7 @@ int linix_cmd_cp(int argc, char **argv)
 	);
 
 	if (destination_fd == -1) {
-		perror("linix cp");
+		linix_perror("cp");
 		close(source_fd);
 		return 1;
 	}
@@ -50,7 +51,7 @@ int linix_cmd_cp(int argc, char **argv)
 			buffer,
 			n
 		) == -1) {
-			perror("linix cp");
+			linix_perror("cp");
 
 			close(source_fd);
 			close(destination_fd);
@@ -60,7 +61,7 @@ int linix_cmd_cp(int argc, char **argv)
 	}
 
 	if (n == -1) {
-		perror("linix cp");
+		linix_perror("cp");
 
 		close(source_fd);
 		close(destination_fd);
@@ -69,13 +70,13 @@ int linix_cmd_cp(int argc, char **argv)
 	}
 
 	if (close(source_fd) == -1) {
-		perror("linix cp");
+		linix_perror("cp");
 		close(destination_fd);
 		return 1;
 	}
 
 	if (close(destination_fd) == -1) {
-		perror("linix cp");
+		linix_perror("cp");
 		return 1;
 	}
 

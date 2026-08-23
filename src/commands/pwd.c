@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include <linix/command.h>
+#include <linix/error.h>
 
 int linix_cmd_pwd(int argc, char **argv)
 {
@@ -12,7 +13,7 @@ int linix_cmd_pwd(int argc, char **argv)
 	char *buffer = getcwd(NULL, 0);
 
 	if (buffer == NULL) {
-		perror("linix: pwd");
+		linix_perror("pwd");
 		return 1;
 	}
 
