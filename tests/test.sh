@@ -149,6 +149,25 @@ echo "ls test" > "$test_dir/lsdir/hello.txt"
 	esac
 )
 
+touch "$test_dir/rm-a"
+touch "$test_dir/rm-b"
+touch "$test_dir/rm-c"
+
+test_command ./linix rm \
+	"$test_dir/rm-a" \
+	"$test_dir/rm-b" \
+	"$test_dir/rm-c" 
+
+if [ ! -e "$test_dir/rm-a" ] &&
+   [ ! -e "$test_dir/rm-b" ] &&
+   [ ! -e "$test_dir/rm-c" ]; then
+	echo "PASS: rm removes multiple files"
+	pass=$((pass + 1))
+else
+	echo "FAIL: rm removes multiple files"
+	fail=$((fail + 1))
+fi
+
 echo
 echo "Passed: $pass"
 echo "Failed: $fail"
