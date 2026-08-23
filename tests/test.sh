@@ -168,6 +168,24 @@ else
 	fail=$((fail + 1))
 fi
 
+touch "$test_dir/mtime.txt"
+
+before=$(stat -c '%Y' "$test_dir/mtime.txt")
+
+sleep 1
+
+test_command ./linix touch "$test_dir/mtime.txt"
+
+after=$(stat -c '%Y' "$test_dir/mtime.txt")
+
+if [ "$after" -gt "$before" ]; then
+	echo "PASS: touch updates modification time"
+	pass=$((pass + 1))
+else
+	echo "FAIL: touch updates modification time"
+	fail=$((fail + 1))
+fi
+
 echo
 echo "Passed: $pass"
 echo "Failed: $fail"

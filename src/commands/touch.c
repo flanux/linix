@@ -1,6 +1,9 @@
+#define _POSIX_C_SOURCE 2000809L
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 #include <linix/command.h>
 
@@ -23,5 +26,11 @@ int linix_cmd_touch(int argc, char **argv)
 	}
 
 	close(fd);
+
+	if (utimensat(AT_FDCWD, argv[1], NULL, 0) == -1) {
+		perror("linix touch");
+		return 1;
+	}
+
 	return 0;
 }
