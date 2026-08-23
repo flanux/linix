@@ -5,10 +5,12 @@
 
 int linix_cmd_ls(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	const char *path = ".";
 
-	DIR *dir = opendir(".");
+	if (argc >=2)
+		path = argv[1];
+
+	DIR *dir = opendir(path);
 
 	if (dir == NULL) {
 		perror("linix ls");

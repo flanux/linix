@@ -128,6 +128,27 @@ test_output "hello world" ./linix echo hello world
 	esac
 )
 
+mkdir "$test_dir/lsdir"
+echo "ls test" > "$test_dir/lsdir/hello.txt"
+
+(
+	cd "$test_dir" || exit 1
+
+	output=$("$OLDPWD/linix" ls lsdir)
+
+	case "$output" in
+		*hello.txt*)
+			echo "PASS: ls lists specified directory"
+			pass=$((pass + 1))
+			;;
+		*)
+
+			echo "FAIL: ls lists specified directory"
+			fail=$((fail + 1))
+			;;
+	esac
+)
+
 echo
 echo "Passed: $pass"
 echo "Failed: $fail"
