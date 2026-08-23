@@ -8,14 +8,11 @@ typedef struct {
 	LinixCommandFn fn;
 } LinixCommand;
 
-int linix_cmd_pwd(int argc, char **argv);
-int linix_cmd_cat(int argc, char **argv);
-int linix_cmd_echo(int argc, char **argv);
-int linix_cmd_touch(int argc, char **argv);
-int linix_cmd_mkdir(int argc, char **argv);
-int linix_cmd_rm(int argc, char **argv);
-int linix_cmd_ls(int argc, char **argv);
-int linix_cmd_cp(int argc, char **argv);
-int linix_cmd_mv(int argc, char **argv);
+#define LINIX_COMMAND(name, fn) \
+	int fn(int argc, char **argv);
+
+#include "linix/commands.def"
+
+#undef LINIX_COMMAND
 
 #endif

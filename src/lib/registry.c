@@ -3,44 +3,14 @@
 #include <linix/command.h>
 #include <linix/registry.h>
 
+#define LINIX_COMMAND(cmd_name, cmd_fn) \
+	{.name = #cmd_name, .fn = cmd_fn },
+
 static const LinixCommand commands[] = {
-	{
-		.name = "pwd",
-		.fn = linix_cmd_pwd
-	},
-	{
-		.name = "cat",
-		.fn = linix_cmd_cat
-	},
-	{
-		.name = "echo",
-		.fn = linix_cmd_echo
-	},
-	{
-		.name = "touch",
-		.fn = linix_cmd_touch
-	},
-	{
-		.name = "mkdir",
-		.fn = linix_cmd_mkdir
-	},
-	{
-		.name = "rm",
-		.fn = linix_cmd_rm
-	},
-	{
-		.name = "ls",
-		.fn = linix_cmd_ls
-	},
-	{
-		.name = "cp",
-		.fn = linix_cmd_cp
-	},
-	{
-		.name = "mv",
-		.fn = linix_cmd_mv
-	}
+#include <linix/commands.def>
 };
+
+#undef LINIX_COMMAND
 
 const LinixCommand *linix_commands(size_t *count)
 {
