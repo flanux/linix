@@ -10,9 +10,11 @@ int linix_cmd_mkdir(int argc, char **argv)
 		return 1;
 	}
 
-	if (mkdir(argv[1], 0755) == -1) {
-		perror("linix mkdir");
-		return 1;
+	for (int i=1; i<argc; i++) {
+		if (mkdir(argv[i], 0755) == -1) {
+			perror("linix mkdir");
+			return 1;
+		}
 	}
 
 	return 0;

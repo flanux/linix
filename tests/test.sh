@@ -186,6 +186,21 @@ else
 	fail=$((fail + 1))
 fi
 
+test_command ./linix mkdir \
+	"$test_dir/mkdir-a" \
+	"$test_dir/mkdir-b" \
+	"$test_dir/mkdir-c" 
+
+if [ -d "$test_dir/mkdir-a" ] &&
+   [ -d "$test_dir/mkdir-b" ] &&
+   [ -d "$test_dir/mkdir-c" ]; then
+	echo "PASS: mkdir creates multiple directories"
+	pass=$((pass + 1))
+else
+	echo "FAIL: mkdir creates multiples directiories"
+	fail=$((fail + 1))
+fi
+
 echo
 echo "Passed: $pass"
 echo "Failed: $fail"
