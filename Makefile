@@ -3,20 +3,11 @@ cc = gcc
 CFLAGS = -std=c11 -Wall -Wextra -Wpedantic -g
 CPPFLAGS = -Iinclude
 
-SRC = \
-      src/main.c \
-      src/commands/pwd.c \
-      src/commands/cat.c \
-      src/commands/echo.c \
-      src/commands/touch.c \
-      src/commands/mkdir.c \
-      src/commands/rm.c \
-      src/commands/ls.c \
-      src/commands/cp.c \
-      src/commands/mv.c \
-      src/lib/io.c 
+SRC := $(wildcard src/commands/*.c) \
+       $(wildcard src/lib/*.c) \
+       src/main.c
 
-OBJ = $(SRC:.c=.o)
+OBJ := $(SRC:.c=.o)
 
 linix: $(OBJ)
 	$(CC) $(OBJ) -o $@
